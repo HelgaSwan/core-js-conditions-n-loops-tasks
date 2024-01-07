@@ -9,7 +9,7 @@
  *                                                                                           *
  ******************************************************************************************* */
 
-/**
+/** 1
  * Determines whether a given number is positive. Zero is considered positive.
  * This function does not use Number or Math class methods.
  *
@@ -21,11 +21,11 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return !(number < 0);
 }
 
-/**
+/** 2
  * Returns the maximum of three numbers without using Array and Math classes methods.
  *
  * @param {number} a - The first number.
@@ -38,11 +38,14 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  let maxNumber = a;
+  if (b > maxNumber) maxNumber = b;
+  if (c > maxNumber) maxNumber = c;
+  return maxNumber;
 }
 
-/**
+/** 3
  * Checks if a queen can capture a king in the next move on an 8x8 chessboard.
  * See more details at https://en.wikipedia.org/wiki/Queen_(chess)
  *
@@ -64,7 +67,7 @@ function canQueenCaptureKing(/* queen, king */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 4
  * Determines whether a triangle is isosceles based on its side lengths.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -82,11 +85,14 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a === 0 || b === 0 || c === 0) return false;
+  return (
+    (a === b && a + b > c) || (a === c && a + c > b) || (b === c && b + c > a)
+  );
 }
 
-/**
+/** 5
  * Converts a number to Roman numerals. The number will be between 1 and 39.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -100,11 +106,35 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let n = num;
+  let str = '';
+  while (n > 0) {
+    if (n > 9) {
+      str += 'X';
+      n -= 10;
+    }
+    if (n === 9) {
+      str += 'IX';
+      n -= 9;
+    }
+    if (n > 4 && n < 10) {
+      str += 'V';
+      n -= 5;
+    }
+    if (n === 4) {
+      str += 'IV';
+      n -= 4;
+    }
+    if (n > 0 && n < 4) {
+      str += 'I';
+      n -= 1;
+    }
+  }
+  return str;
 }
 
-/**
+/** 6
  * Converts a number to a string, replacing digits with words.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -119,11 +149,58 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let resultStr = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '-':
+        resultStr += 'minus';
+        break;
+      case '1':
+        resultStr += 'one';
+        break;
+      case '2':
+        resultStr += 'two';
+        break;
+      case '3':
+        resultStr += 'three';
+        break;
+      case '4':
+        resultStr += 'four';
+        break;
+      case '5':
+        resultStr += 'five';
+        break;
+      case '6':
+        resultStr += 'six';
+        break;
+      case '7':
+        resultStr += 'seven';
+        break;
+      case '8':
+        resultStr += 'eight';
+        break;
+      case '9':
+        resultStr += 'nine';
+        break;
+      case '0':
+        resultStr += 'zero';
+        break;
+      case ',':
+        resultStr += 'point';
+        break;
+      case '.':
+        resultStr += 'point';
+        break;
+      default:
+        resultStr += 'NaN';
+    }
+    if (i < numberStr.length - 1) resultStr += ' ';
+  }
+  return resultStr;
 }
 
-/**
+/** 7
  * Determines whether a string is a palindrome.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -135,11 +212,14 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  for (let i = 0; i < Math.trunc(str.length / 2) - 1; i += 1) {
+    if (str[i] !== str[str.length - 1 - i]) return false;
+  }
+  return true;
 }
 
-/**
+/** 8
  * Finds the first occurrence of a letter in a string.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -153,11 +233,14 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) return i;
+  }
+  return -1;
 }
 
-/**
+/** 9
  * Checks if a number contains a specific digit.
  * In this task, the use of methods of the String and Array classes is not allowed.
  *
@@ -172,11 +255,22 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let currentNum = Math.abs(num);
+  let diff = 0;
+  let shiftNum = 0;
+  do {
+    shiftNum = Math.floor(currentNum / 10);
+    diff = currentNum - shiftNum * 10;
+
+    if (diff === digit) return true;
+    currentNum = shiftNum;
+  } while (currentNum > 0);
+
+  return false;
 }
 
-/**
+/** 10
  * Finds the index of an element in an array where the sum of elements to the left equals the sum of elements to the right.
  * If such an index does not return -1.
  * In this task, the use of methods of the Array and String classes is not allowed.
@@ -189,11 +283,22 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  for (let i = 1; i < arr.length - 1; i += 1) {
+    let sumLeft = 0;
+    let sumRight = 0;
+    for (let j = 0; j < i; j += 1) {
+      sumLeft += arr[j];
+    }
+    for (let j = i + 1; j < arr.length; j += 1) {
+      sumRight += arr[j];
+    }
+    if (sumLeft === sumRight) return i;
+  }
+  return -1;
 }
 
-/**
+/** 11
  * Generates a spiral matrix of a given size, filled with numbers in ascending order starting from one.
  * The direction of filling with numbers is clockwise.
  * Usage of String and Array classes methods is not allowed in this task.
@@ -218,7 +323,7 @@ function getSpiralMatrix(/* size */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 12
  * Rotates a matrix by 90 degrees clockwise in place.
  * Take into account that the matrix size can be very large. Consider how you can optimize your solution.
  * Usage of String and Array class methods is not allowed in this task.
@@ -237,7 +342,7 @@ function rotateMatrix(/* matrix */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 13
  * Sorts an array of numbers in ascending order in place.
  * Employ any sorting algorithm of your choice.
  * Take into account that the array can be very large. Consider how you can optimize your solution.
@@ -255,7 +360,7 @@ function sortByAsc(/* arr */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 14
  * Shuffles characters in a string so that the characters with an odd index are moved to the end of the string at each iteration.
  * Take into account that the string can be very long and the number of iterations is large. Consider how you can optimize your solution.
  * Usage of Array class methods is not allowed in this task.
@@ -276,7 +381,7 @@ function shuffleChar(/* str, iterations */) {
   throw new Error('Not implemented');
 }
 
-/**
+/** 15
  * Returns the nearest largest integer consisting of the digits of the given positive integer.
  * If there is no such number, it returns the original number.
  * Usage of String class methods is not allowed in this task.
